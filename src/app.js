@@ -1,5 +1,6 @@
 import express from "express";
 import db from "./config/dbConnect.js";
+import livros from "./models/Livro.js";
 
 //Cria a conexão
 db.on("error", console.log.bind(console, 'Erro de conexão'))
@@ -12,10 +13,10 @@ const app = express();
 
 app.use(express.json());
 
-const livros = [
-    {id: 1, "titulo": "Senhor dos Aneis"},
-    {id: 2, "titulo": "O Hobiit"}
- ]
+// const livros = [
+//     {id: 1, "titulo": "Senhor dos Aneis"},
+//     {id: 2, "titulo": "O Hobiit"}
+//  ]
 
 //Define os atributos para cada rota
 app.get('/', (req, res) => {
@@ -24,7 +25,9 @@ app.get('/', (req, res) => {
 
 //O método de requisição HTTP GET é usado para recuperar informações de um servidor
 app.get('/livros', (req, res) => {
-    res.status(200).json(livros)
+    livros.find((err, livros) => {
+        res.status(200).json(livros)
+    })
 })
 
 // Requisição de busca por id
