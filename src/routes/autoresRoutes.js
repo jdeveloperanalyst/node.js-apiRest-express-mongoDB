@@ -1,29 +1,26 @@
 import express from "express";
-import LivroController from '../controllers/livrosController.js';
+import AutorController from '../controllers/autoresController.js';
 
 const router = express.Router();
 
 router
  //O método de requisição HTTP GET é usado para recuperar informações de um servidor
- .get("/livros", LivroController.listarLivros)
-
- // Requisição de busca livro por editora
- .get("/livros/busca", LivroController.listarLivroPorEditora)
+ .get("/autores", AutorController.listarAutores)
 
  // Requisição de busca por id
- .get("/livros/:id", LivroController.listarLivroPorId)
+ .get("/autores/:id", AutorController.listarAutorPorId)
 
  //O método de requisição HTTP POST é usado para enviar dados para um servidor
- .post("/livros", LivroController.cadastrarLivro)
+ .post("/autores", AutorController.cadastrarAutor)
 
  /*
  O método de requisição HTTP PUT é usado para enviar dados para um servidor
  com a intenção de atualizar ou criar um recurso específico
  */
- .put("/livros/:id", LivroController.atualizarLivro)
+ .put("/autores/:id", AutorController.atualizarAutor)
  
  //O método de requisição HTTP DELETE é utilizado para solicitar a remoção de um recurso específico no servidor.
- .delete("/livros/:id", LivroController.excluirLivro)
+ .delete("/autores/:id", AutorController.excluirAutor)
 
  export default router;
  
